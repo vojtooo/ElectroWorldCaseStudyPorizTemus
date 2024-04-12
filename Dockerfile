@@ -11,6 +11,7 @@ COPY config_.py /app/config_.py
 COPY webserver_app.py /app/webserver_app.py
 COPY static /app/static
 COPY templates /app/templates
+COPY temus_project_poriz.db /app/temus_project_poriz.db
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
