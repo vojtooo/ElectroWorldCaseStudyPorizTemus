@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tables and Image</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Change font family to a more business-like font */
+        }
+
+        h2, h3 {
+            font-weight: bold; /* Make headers bold */
+            text-align: center; /* Center headers */
+        }
+        p {
+            text-align: center;
+        }
+
+        .table-container {
+            display: flex;
+            flex-wrap: wrap; /* Allow tables to wrap to next line if needed */
+            justify-content: center; /* Center the table containers horizontally */
+            margin-bottom: 20px; /* Add space below table containers */
+        }
+
+        .table-container > div {
+            flex: 1;
+            margin-right: 20px; /* Adjust the margin as needed */
+            margin-bottom: 20px; /* Add space between rows of tables */
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Style for the scrollbar */
+        .scrollable-table {
+            max-height: 300px; /* Adjust the height as needed */
+            overflow-y: auto;
+        }
+
+        .vendor-rating {
+            text-align: center; /* Center the "Vendor Rating" header */
+            margin-bottom: 20px; /* Add space below the header */
+        }
+
+        .image-container {
+            text-align: center; /* Center the image */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header "Dynamic Pricing Suggestions" centered above TABLE 1 and TABLE 2 -->
+    <h2>Dynamic Pricing Suggestions</h2>
+    <p>Last update on {{newest_timestamp_str}} UTC.</p>
+
+    <!-- Display TABLE 1 and TABLE 2 next to each other -->
+    <div class="table-container">
+        <div>
+            <!-- Lower-level header "Per category" above TABLE 1 -->
+            <h3>Number of items per category</h3>
+            <div class="scrollable-table">
+                {{ df1 | safe }}
+            </div>
+        </div>
+        <div>
+            <!-- Lower-level header "Per item" above TABLE 2 -->
+            <h3>Individual items</h3>
+            <div class="scrollable-table">
+                {{ df2 | safe }}
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Header "Stock Status Alerts" centered above TABLE 3 and TABLE 4 -->
+    <h2>Stock Status Alerts</h2>
+
+    <!-- Display TABLE 3 and TABLE 4 next to each other -->
+    <div class="table-container">
+        <div>
+            <!-- Lower-level header "Per category" above TABLE 3 -->
+            <h3>Number of items per category</h3>
+            <div class="scrollable-table">
+                {{ df3 | safe }}
+            </div>
+        </div>
+        <div>
+            <!-- Lower-level header "Per item" above TABLE 4 -->
+            <h3>Individual items</h3>
+            <div class="scrollable-table">
+                {{ df4 | safe }}
+            </div>
+        </div>
+    </div>
+
+     <hr>
+
+    <!-- Header "Vendor Rating" centered above the image -->
+    <h2 class="vendor-rating">Vendor Rating</h2>
+
+    <!-- Centered image -->
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='vendor_review.png') }}" alt="Plot Image">
+    </div>
+</body>
+</html>
