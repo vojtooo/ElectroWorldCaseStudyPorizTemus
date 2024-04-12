@@ -1,3 +1,4 @@
+# Library import
 from flask import Flask, render_template
 import pandas as pd
 from sqlalchemy import create_engine, inspect, MetaData, Table, Column, Integer, String, DateTime, Float
@@ -75,7 +76,7 @@ def update_tables():
     vendor_data_pd.rename(columns={"Vendor Name": "Vendor"}, inplace=True)
 
     C = vendor_data_pd["Customer Review Score"].mean()
-    m = 100
+    m = c.BAYESIAN_CONSTANT_M
     vendor_data_pd["Bayesian Average"] = (vendor_data_pd["Number of Feedbacks"]/(vendor_data_pd["Number of Feedbacks"]+m))*vendor_data_pd["Customer Review Score"] + (m/(vendor_data_pd["Number of Feedbacks"]+m))*C
     vendor_history_table_increment = vendor_data_pd[["Vendor", "Bayesian Average"]]
     vendor_history_table_increment["DateTime"] = pd.Timestamp("now", tz=dt.timezone.utc)
